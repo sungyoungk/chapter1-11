@@ -90,18 +90,20 @@
                 let capingtems = response['all_capingtem']
                 for (let i = 0; i < capingtems.length; i++){
                     let title = capingtems[i]['title']
-                    let text = capingtems[i]['text']
+                    let category = capingtems[i]['category']
                     let price = capingtems[i]['price']
                     let comment = capingtems[i]['comment']
                     let file = capingtems[i]['file']
+                    let starpoints = capingtems[i]['category']
 
                     let temp_html = `<div class="card h-100">
                                         <img width="300" height="250" alt="${title}"
                                              src="../static/${file}">
                                         <div class="card-body">
                                             <h5 class="card-title">${title}</h5>
-                                            <p class="card-text">${text}</p>
+                                            <p class="card-category">${category}</p>
                                             <p class="card-price">${price}</p>
+                                            <p class="card-star">${starpoints}</p>
                                             <p class="mycomment">${comment}</p>
                                         </div>
                                     </div>`
