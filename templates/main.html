@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>Ping Me!!</title>
+</head>
+
+<style>
+
+    .wrap {
+        width: 1920px;
+    }
+
+
+    .title-top {
+        position: absolute;
+        width: 1920px;
+        height: 150px;
+        margin: auto;
+
+        background: #243665;
+    }
+
+    .btn {
+
+        width: 244px;
+        height: 80px;
+        margin-top: 30px;
+
+        background: #8BD8BD;
+        border-radius: 100px;
+
+    }
+
+    .title {
+
+        margin: auto;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 96px;
+        line-height: 116px;
+        text-align: center;
+
+        color: #000000;
+    }
+
+    .card {
+        width: 300px;
+        height: 500px;
+
+    }
+
+
+    .col {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+</style>
+<script>
+    $(document).ready(function () {
+        listing()
+    })
+
+    function listing() {
+        $.ajax({
+            type: "GET",
+            url: "/main",
+            data: {},
+            success: function (response) {
+                let capingtems = response['all_capingtem']
+                for (let i = 0; i < capingtems.length; i++){
+                    let title = capingtems[i]['title']
+                    let text = capingtems[i]['text']
+                    let price = capingtems[i]['price']
+                    let comment = capingtems[i]['comment']
+                    let file = capingtems[i]['file']
+
+                    let temp_html = `<div class="card h-100">
+                                        <img width="300" height="250" alt="${title}"
+                                             src="../static/${file}">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${title}</h5>
+                                            <p class="card-text">${text}</p>
+                                            <p class="card-price">${price}</p>
+                                            <p class="mycomment">${comment}</p>
+                                        </div>
+                                    </div>`
+                    $('#cards-box').append(temp_html)
+                }
+            }
+        })
+    }
+
+</script>
+
+<body>
+    <div class="wrap">
+        <div class="title-top">
+            <button class="btn" style="float:right;"><span>작성하기</span></button>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <div>
+            <div class="title">
+                <img width="300" height="250" src="../static/car.png">
+                <h1>차박꿀템❗</h1>
+                <h1>여기 다 있음❗❗</h1>
+            </div>
+        </div>
+        <div class="col" id="cards-box">
+
+        </div>
+
+    </div>
+
+
+</body>
+</html>
