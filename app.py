@@ -27,7 +27,7 @@ def home():
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.users.find_one({"username": payload["id"]})
-        return render_template('index.html', user_info=user_info)
+        return render_template('login.html', user_info=user_info)
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
@@ -62,12 +62,14 @@ def sign_in():
 
 @app.route('/sign_up/save', methods=['POST'])
 def sign_up():
+    nickname_receive = request.form['nickname_give']
     username_receive = request.form['username_give']
     password_receive = request.form['password_give']
     password_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
     doc = {
         "username": username_receive,
         "password": password_hash,
+        "nickname": nickname_receive,
         "profile_name": username_receive,
         "profile_pic": "",
         "profile_pic_real": "profile_pics/profile_placeholder.png",
@@ -80,6 +82,13 @@ def sign_up():
 def check_dup():
     username_receive = request.form['username_give']
     exists = bool(db.users.find_one({"username": username_receive}))
+    # print(value_receive, type_receive, exists)
+    return jsonify({'result': 'success', 'exists': exists})
+
+@app.route('/sign_up/check_nick', methods=['POST'])
+def check_nick():
+    nickname_receive = request.form['nickname_give']
+    exists = bool(db.users.find_one({"nickname": nickname_receive}))
     # print(value_receive, type_receive, exists)
     return jsonify({'result': 'success', 'exists': exists})
 
