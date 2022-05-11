@@ -346,7 +346,7 @@
 
         /* 포스트 저장 데이터 보내기 */
         function savePost() {
-            let file = $('#post-file')[0].files[0]
+            let file = $('#file')[0].files[0]
             let form_data = new FormData();
 
             let title = $('#post-title').val();
@@ -372,6 +372,7 @@
                 success: function (response) {
                     alert(response["msg"])
                     $('.modal').addClass("hidden");
+                    window.location.reload()
                 }
             });
         }
