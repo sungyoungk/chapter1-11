@@ -52,7 +52,7 @@ def sign_in():
     if result is not None:
         payload = {
             'id': username_receive,
-            'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
+            'exp': datetime.utcnow() + timedelta(seconds=60 * 60)  # 로그인 1시간 유지
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
 
@@ -60,7 +60,6 @@ def sign_in():
     # 찾지 못하면
     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
-
 
 @app.route('/sign_up/save', methods=['POST'])
 def sign_up():
@@ -134,7 +133,6 @@ def save_post():
     db.savepost.insert_one(doc)
 
     return jsonify({'msg': '등록 완료!'})
-
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
