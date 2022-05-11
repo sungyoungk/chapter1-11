@@ -153,12 +153,12 @@
                     let category = capingtems[i]['category']
                     let price = capingtems[i]['price']
                     let comment = capingtems[i]['comment']
-                    let file = capingtems[i]['file']
+                    let img = capingtems[i]['img']
                     let starpoints = capingtems[i]['category']
 
                     let temp_html = `<div class="card h-100">
                                         <img width="300" height="250" alt="${title}"
-                                             src="../static/${file}">
+                                             src="../static/${img}">
                                         <div class="card-body">
                                             <h5 class="card-title">${title}</h5>
                                             <p class="card-category">${category}</p>
@@ -168,7 +168,6 @@
                                         </div>
                                     </div>`
                     $('#cards-box').append(temp_html)
-                    window.location.reload()
 
                 }
             }

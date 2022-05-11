@@ -33,6 +33,7 @@ def home():
     except jwt.exceptions.DecodeError:
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
+
 @app.route('/login')
 def login():
     msg = request.args.get("msg")
@@ -95,6 +96,7 @@ def check_nick():
     # print(value_receive, type_receive, exists)
     return jsonify({'result': 'success', 'exists': exists})
 
+
 @app.route('/main', methods=['GET'])
 def show_cards():
     capingtems = list(db.savepost.find({}, {'_id': False}))
@@ -122,16 +124,16 @@ def save_post():
     doc = {
         'num': count,
         'img': f'{filename}.{extension}',
-        'title' :title_receive,
-        'category' : category_receive,
-        'price' : price_receive,
+        'title': title_receive,
+        'category': category_receive,
+        'price': price_receive,
         'starpoints': starpoints_receive,
         'comment': comment_receive
     }
 
     db.savepost.insert_one(doc)
 
-    return jsonify({'msg':'등록 완료!'})
+    return jsonify({'msg': '등록 완료!'})
 
 
 if __name__ == '__main__':
