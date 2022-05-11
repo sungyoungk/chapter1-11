@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Jua&display=swap" rel="stylesheet">
+    <title>Ping Me!!</title>
+
+      <!-- bulma css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/79ab9960f1.js" crossorigin="anonymous"></script>
+
+    <!-- Google Font : Logo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    /* fixed color */
+    :root {
+        --blue: #243665;
+        --green: #8BD8BD;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    /* header CSS*/
+    .main__header {
+        width: 100%;
+        height: 150px;
+
+        background: #243665;
+
+        display: flex;
+        justify-content: space-between;
+        align-content: flex-start;
+    }
+
+    .header__logo {
+        height : 100px;
+        width : 100px;
+        margin-top: 25px;
+        margin-left: 25px
+    }
+
+   .header__title {
+        padding : 30px;
+   }
+
+   .header__title span{
+       font-size: 60px;
+       color: white;
+       font-family: 'Oleo Script Swash Caps', cursive;
+   }
+
+    /* 로그아웃 버튼 */
+    .logout-btn {
+        margin-top : 50px;
+        margin-right : 30px;
+
+        display : flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .logout-btn button {
+        background-color: #eec748;
+
+        width : 50px;
+        height : 50px;
+        border-radius: 50px;
+
+        font-size : 20px;
+    }
+
+    .logout-btn span {
+        color : white;
+    }
+
+    /* main */
+    /* 글 작성하기 버튼 */
+
+    .post-btn {
+        display : flex;
+        justify-content: flex-end;
+        margin-right : 30px;
+        margin-top : 20px;
+    }
+
+    .post-btn button,
+    .logout-btn button{
+        border : none;
+    }
+
+    .post-btn button:hover,
+    .logout-btn button:hover {
+        background: #3363d3;
+        cursor: pointer;
+    }
+
+    .post-btn button:focus,
+    .logout-btn button:focus {
+        border : none;
+        outline : none;
+    }
+
+    .post-btn i {
+        color : white;
+    }
+
+    .logout-btn button:hover {
+        background: #ff6b2b;
+    }
+    /* main -- title  */
+    .post-columns {
+    }
+
+    .post-columns__intro {
+        margin-top : 100px;
+        text-align: center;
+        font-size: 50px;
+        font-family: 'Oleo Script Swash Caps', cursive;
+        color : #5678cc;
+        margin-bottom : 100px;
+    }
+
+    .post-columns__intro p:first-child {
+        margin-top: 50px;
+    }
+
+    .post-columns__intro p {
+        font-size: 18px;
+        font-weight: 400;
+        margin-top : 10px;
+        color : #858585;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    .post-btn button {
+        background-color: var(--green);
+
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        border : none;
+
+        font-size: 20px;
+    }
+
+    /* main -- cards  */
+    .post-columns__card {
+        display: grid;
+        grid-template-columns : repeat(auto-fill, minmax(25%, auto));
+        row-gap: 50px;
+    }
+
+    .card {
+        width: 250px;
+        height: 400px;
+        margin-left : 50px;
+        margin-bottom: 50px;
+    }
+
+    .card:hover{
+        transform: scale(1.1, 1.1);
+        transition : all 0.2s ease-in-out;
+    }
+
+    .card img{
+        width : 250px;
+        height : 200px;
+    }
+
+    .card-body h5 {
+        font-size : 25px;
+        font-weight: 800;
+    }
+
+    .card-body p {
+        font-size : 15px;
+    }
+
+    .card-body p:nth-child(2),
+    .card-body p:nth-child(3){
+       margin-bottom: 5px;
+    }
+
+    /* 모달 창 CSS 시작 */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      justify-content: center;
+    }
+
+    .modal__overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      width: 100%;
+      height: 100%;
+      /* absolute : 요소의 배치 시 부모 요소가 기준이 됨 */
+      position: absolute;
+    }
+
+    .modal__content {
+      /* absolute : 요소의 배치 시 요소 자기자신을 기준으로 움직임 */
+      /* 필요 시 z-index 조정합시다! */
+      position: fixed;
+      width: 800px;
+      height: 600px;
+      background-color: #8BD8BD;
+
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      padding: 30px;
+
+      border-radius: 30px;
+
+      margin-top: 80px;
+    }
+
+    /* modal 열고 닫을 때 추가-제거할 클래스 */
+    .hidden {
+      display: none;
+    }
+
+    .save-page__post {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .save-page__post p:first-child {
+      display: flex;
+      justify-content: center;
+      font-size: 40px;
+      font-family: 'Oleo Script Swash Caps', cursive;
+        color:var(--blue);
+        margin-top: 20px;
+    }
+    .intro_kor{
+        display: flex;
+        justify-content: center;
+        font-size: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: var(--blue);
+        margin-top: 10px;
+    }
+
+    .save-page__post--form {
+      margin-top : 50px;
+    }
+
+    .form-ctrl{
+      margin-bottom : 5px;
+      width : 700px
+    }
+
+    .save-page__btn {
+      display : flex;
+      justify-content: center;
+      margin-top : 30px;
+    }
+
+    .save-page__btn--save {
+        margin-right: 20px;
+    }
+
+    .blank {
+        height: 50px;
+        background-color: white;
+    }
+
+    /* 모달 창 CSS 마무리 */
+</style>
+<script>
+
+    $(document).ready(function () {
+        listing()
+    })
+
+    function listing() {
+        $.ajax({
+            type: "GET",
+            url: "/main",
+            data: {},
+            success: function (response) {
+                let capingtems = response['all_capingtem']
+                for (let i = 0; i < capingtems.length; i++) {
+                    let title = capingtems[i]['title']
+                    let category = capingtems[i]['category']
+                    let price = capingtems[i]['price']
+                    let comment = capingtems[i]['comment']
+                    let img = capingtems[i]['img']
+                    let starpoints = capingtems[i]['category']
+
+                    let temp_html = `<div class="card h-100">
+                                        <img width="250" height="200" alt="${title}"
+                                             src="../static/${img}">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${title}</h5>
+                                            <p class="card-category">${category}</p>
+                                            <p class="card-price">${price}</p>
+                                            <p class="card-star">${starpoints}</p>
+                                            <p class="mycomment">${comment}</p>
+                                        </div>
+                                    </div>`
+                    $('#cards-box').append(temp_html)
+
+                }
+            }
+        })
+    }
+
+    /* 모달 창 JS 코드 시작 */
+
+    /* 파일 업로드 코드 */
+
+
+        /* 포스트 저장 데이터 보내기 */
+        function savePost() {
+            let file = $('#post-file')[0].files[0]
+            let form_data = new FormData();
+
+            let title = $('#post-title').val();
+            let category = $('#post-category').val();
+            let price = $('#post-price').val();
+            let starPoints = $('#post-starpoints').val();
+            let comment = $('#post-comment').val();
+
+            form_data.append("file_give", file)
+            form_data.append("title_give", title)
+            form_data.append("category_give", category)
+            form_data.append("price_give", price)
+            form_data.append("starPoints_give", starPoints)
+            form_data.append("comment_give", comment)
+
+            $.ajax({
+                type: "POST",
+                url: "/savepost",
+                data: form_data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert(response["msg"])
+                    $('.modal').addClass("hidden");
+                }
+            });
+        }
+
+    /* 모달 창 JS 코드 마무리 */
+
+</script>
+
+<body>
+
+    <!-- header -->
+    <header class="main__header">
+        <!-- btn element -->
+          <div class = "header__logo">
+              <img src="/static/car.png"/>
+          </div>
+          <div class = "header__title">
+                <span>PingMe!</span>
+          </div>
+          <div class = "logout-btn">
+            <button type = "button" class = "main-header__logout">
+              <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+            <span>logout</span>
+          </div>
+    </header>
+
+    <!-- main -->
+    <main class="title post-columns">
+        <!-- main : posting-button -->
+        <div class="post-btn">
+            <button type="button" class="main-body__post">
+                <i class="fa-solid fa-pencil"></i>
+            </button>
+        </div>
+        <!-- main : title -->
+        <div class = "post-columns__intro">
+            <span>Pick Carping Items From Here!</span>
+            <p>차박이 처음이라 어떤 장비를 준비해야할 지 모르겠다면 아래 꿀템 리스트에서 마음에 드는 아이템을 찾아보세요!</p>
+            <p>프로 차박러들의 꿀템이 모두 여기 있답니다!</p>
+        </div>
+        <!-- main : columns -->
+        <div class="col post-columns__card" id="cards-box">
+
+        </div>
+    </main>
+
+    <footer class="blank">
+
+    </footer>
+
+
+ <!-- 모달 창 : 포스트 작성 양식 코드 시작 -->
+    <div class="modal save-page hidden" id="modal-post">
+        <div class="modal__overlay"></div>
+        <div class="modal__content">
+            <div class="save-page__post">
+                <!-- form title  -->
+                <p>Share Items With Members!</p>
+                <p class="intro_kor">나만의 차박 꿀템을 공유해주세요!</p>
+                <div class="save-page__post--form">
+
+                <!-- 파일 첨부 : img 파일형식 제한 -->
+                <div class="filebox form-ctrl">
+                    <label class="file-label">
+                        <input id="file" class="file-input" type="file" accept=".jpg, .jpeg, .png" name="resume">
+                        <span class="file-cta"><span class="file-icon"><i class="fas fa-upload"></i></span>
+                        <span class="file-label">Choose a Photo…</span></span>
+                    </label>
+                </div>
+
+                <!-- input // 제목 -->
+                <div><input id="post-title" class="input is-primary form-ctrl" type="text" placeholder="제목을 입력하세요.">
+                </div>
+
+                <!-- select // 카테고리 선택 -->
+                <div class="select is-primary form-ctrl">
+                    <select id="post-category" class="form-ctrl">
+                        <option>카테고리를 선택하세요.</option>
+                        <option>조명</option>
+                        <option>캠핑매트</option>
+                        <option>수납용품</option>
+                        <option>취사용품</option>
+                        <option>기타</option>
+                    </select>
+                </div>
+                <!-- input // 가격 작성 -->
+                <div><input id="post-price" class="input is-primary form-ctrl" type="text"
+                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                required placeholder="가격대를 입력하세요."></div>
+                <!-- select // 별점 선택 -->
+                <div class="select is-primary form-ctrl">
+                    <select id="post-starpoints" class="form-ctrl">
+                        <option>별점을 선택하세요.</option>
+                        <option>5</option>
+                        <option>4</option>
+                        <option>3</option>
+                        <option>2</option>
+                        <option>1</option>
+                    </select>
+                </div>
+                <!-- input // 한줄평 작성 -->
+                <div><input id="post-comment" class="input is-primary form-ctrl" type="text"
+                                placeholder="상품에 관해 한줄평을 남겨주세요."></div>
+                </div>
+                <!-- 버튼 뭉치 : 저장하기 + 취소하기 -->
+                <div class="save-page__btn">
+                    <!-- 저장하기 버튼 -->
+                    <button class="button is-link save-page__btn--save" onclick="savePost()">저장하기</button>
+                    <!-- 취소하기 버튼 -->
+                    <button class="button is-danger save-page__btn--cancel">취소하기</button>
+                </div>
+            </div>
+            <!-- 모달 창 : 포스트 작성 양식 코드 마무리 -->
+        </div>
+    </div>
+
+</body>
+<!-- JS 코드 시작 // 모달 창 : 열고 닫기 -->
+<script>
+    const openButton = document.getElementsByClassName("main-body__post");
+    const modal = document.querySelector(".modal");
+    const overlay = modal.getElementsByClassName("modal__overlay");
+    const closeBtn = modal.getElementsByClassName("save-page__btn--cancel");
+
+    function openModal() {
+        modal.classList.remove("hidden");
+    }
+
+    function closeModal() {
+        modal.classList.add("hidden");
+    }
+
+    closeBtn[0].addEventListener("click", closeModal);
+    overlay[0].addEventListener("click", closeModal);
+    openButton[0].addEventListener("click", openModal);
+
+</script>
+<!-- JS 코드 마무리 // 모달 창 : 열고 닫기 -->
+</html>
