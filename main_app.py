@@ -18,7 +18,7 @@ def home():
 
 @app.route('/main', methods=['GET'])
 def show_cards():
-    capingtems = list(db.capingtem.find({}, {'_id': False}))
+    capingtems = list(db.savepost.find({}, {'_id': False}))
     return jsonify({'all_capingtem': capingtems})
 
 
