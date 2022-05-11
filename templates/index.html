@@ -137,44 +137,82 @@
 </style>
 <script>
 
+    $(document).ready(function () {
+        listing()
+    })
+
+    function listing() {
+        $.ajax({
+            type: "GET",
+            url: "/main",
+            data: {},
+            success: function (response) {
+                let capingtems = response['all_capingtem']
+                for (let i = 0; i < capingtems.length; i++) {
+                    let title = capingtems[i]['title']
+                    let category = capingtems[i]['category']
+                    let price = capingtems[i]['price']
+                    let comment = capingtems[i]['comment']
+                    let file = capingtems[i]['file']
+                    let starpoints = capingtems[i]['category']
+
+                    let temp_html = `<div class="card h-100">
+                                        <img width="300" height="250" alt="${title}"
+                                             src="../static/${file}">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${title}</h5>
+                                            <p class="card-category">${category}</p>
+                                            <p class="card-price">${price}</p>
+                                            <p class="card-star">${starpoints}</p>
+                                            <p class="mycomment">${comment}</p>
+                                        </div>
+                                    </div>`
+                    $('#cards-box').append(temp_html)
+                    window.location.reload()
+
+                }
+            }
+        })
+    }
+
     /* 모달 창 JS 코드 시작 */
 
     /* 파일 업로드 코드 */
-    $(document).ready(function () {
-        bsCustomFileInput.init()
-    })
+    {#$(document).ready(function () {#}
+    {#   bsCustomFileInput.init()#}
+    {#})#}
 
-    /* 포스트 저장 데이터 보내기 */
-    function savePost() {
-        let file = $('#post-file')[0].files[0]
-        let form_data = new FormData();
+        /* 포스트 저장 데이터 보내기 */
+        function savePost() {
+            let file = $('#post-file')[0].files[0]
+            let form_data = new FormData();
 
-        let title = $('#post-title').val();
-        let category = $('#post-category').val();
-        let price = $('#post-price').val();
-        let starPoints = $('#post-starpoints').val();
-        let comment = $('#post-comment').val();
+            let title = $('#post-title').val();
+            let category = $('#post-category').val();
+            let price = $('#post-price').val();
+            let starPoints = $('#post-starpoints').val();
+            let comment = $('#post-comment').val();
 
-        form_data.append("file_give", file)
-        form_data.append("title_give", title)
-        form_data.append("category_give", category)
-        form_data.append("price_give", price)
-        form_data.append("starPoints_give", starPoints)
-        form_data.append("comment_give", comment)
+            form_data.append("file_give", file)
+            form_data.append("title_give", title)
+            form_data.append("category_give", category)
+            form_data.append("price_give", price)
+            form_data.append("starPoints_give", starPoints)
+            form_data.append("comment_give", comment)
 
-        $.ajax({
-            type: "POST",
-            url: "/savepost",
-            data: form_data,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (response) {
-                alert(response["msg"])
-                $('.modal').addClass("hidden");
-            }
-        });
-    }
+            $.ajax({
+                type: "POST",
+                url: "/savepost",
+                data: form_data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert(response["msg"])
+                    $('.modal').addClass("hidden");
+                }
+            });
+        }
 
     /* 모달 창 JS 코드 마무리 */
 
@@ -202,47 +240,8 @@
             <h1>여기 다 있음❗❗</h1>
         </div>
     </div>
-    <div class="col">
-        <div class="card h-100">
-            <img width="300" height="250" alt="노지캠핑 릴렉스체어 야영장 휴식 차박꿀템 마운틴"
-                 src="https://shopping-phinf.pstatic.net/main_2794458/27944584345.20210711002643.jpg?type=f140">
-            <div class="card-body">
-                <h5 class="card-title">노지캠핑 릴렉스체어</h5>
-                <p class="card-text">차박후에 편히 쉴 수 있어요</p>
-                <p class="card-price">82,000원</p>
-                <p class="mycomment">너무 편안해요!</p>
-            </div>
-        </div>
-        <div class="card h-100">
-            <img width="300" height="250" alt="노지캠핑 릴렉스체어 야영장 휴식 차박꿀템 마운틴"
-                 src="https://shopping-phinf.pstatic.net/main_2794458/27944584345.20210711002643.jpg?type=f140">
-            <div class="card-body">
-                <h5 class="card-title">노지캠핑 릴렉스체어</h5>
-                <p class="card-text">차박후에 편히 쉴 수 있어요</p>
-                <p class="card-price">82,000원</p>
-                <p class="mycomment">너무 편안해요!</p>
-            </div>
-        </div>
-        <div class="card h-100">
-            <img width="300" height="250" alt="노지캠핑 릴렉스체어 야영장 휴식 차박꿀템 마운틴"
-                 src="https://shopping-phinf.pstatic.net/main_2794458/27944584345.20210711002643.jpg?type=f140">
-            <div class="card-body">
-                <h5 class="card-title">노지캠핑 릴렉스체어</h5>
-                <p class="card-text">차박후에 편히 쉴 수 있어요</p>
-                <p class="card-price">82,000원</p>
-                <p class="mycomment">너무 편안해요!</p>
-            </div>
-        </div>
-        <div class="card h-100">
-            <img width="300" height="250" alt="노지캠핑 릴렉스체어 야영장 휴식 차박꿀템 마운틴"
-                 src="https://shopping-phinf.pstatic.net/main_2794458/27944584345.20210711002643.jpg?type=f140">
-            <div class="card-body">
-                <h5 class="card-title">노지캠핑 릴렉스체어</h5>
-                <p class="card-text">차박후에 편히 쉴 수 있어요</p>
-                <p class="card-price">82,000원</p>
-                <p class="mycomment">너무 편안해요!</p>
-            </div>
-        </div>
+    <div class="col" id="cards-box">
+
     </div>
 
     <!-- 모달 창 열기 버튼 (포스트 작성하기) -->

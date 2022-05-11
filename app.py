@@ -95,12 +95,19 @@ def check_nick():
     # print(value_receive, type_receive, exists)
     return jsonify({'result': 'success', 'exists': exists})
 
+@app.route('/main', methods=['GET'])
+def show_cards():
+    capingtems = list(db.savepost.find({}, {'_id': False}))
+    return jsonify({'all_capingtem': capingtems})
+
 
 @app.route("/savepost", methods=["POST"])
 def save_post():
     img = request.files["file_give"]
     extension = img.filename.split('.')[-1]
-    filename = f'img'
+    today = datetime.now()
+    mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
+    filename = f'img-{mytime}'
     save_to = f'static/{filename}.{extension}'
     img.save(save_to)
     title_receive = request.form["title_give"]
@@ -115,16 +122,16 @@ def save_post():
     doc = {
         'num': count,
         'img': f'{filename}.{extension}',
-        'title': title_receive,
-        'category': category_receive,
-        'price': price_receive,
+        'title' :title_receive,
+        'category' : category_receive,
+        'price' : price_receive,
         'starpoints': starpoints_receive,
         'comment': comment_receive
     }
 
     db.savepost.insert_one(doc)
 
-    return jsonify({'msg': '등록 완료!'})
+    return jsonify({'msg':'등록 완료!'})
 
 
 if __name__ == '__main__':
