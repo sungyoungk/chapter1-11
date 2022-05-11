@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 
+<<<<<<< HEAD
   <style>
     body {
       margin : 0px;
@@ -42,10 +43,57 @@
   flex-direction: column;
   align-content: center;
   padding : 30px;
+=======
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="{{ url_for('static', filename='mystyle.css') }}" rel="stylesheet">
+
+  <style>
+    body {
+    margin: 0px;
+    padding: 0px;
+}
+    /* 모달 창 CSS 시작 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+  display : flex;
+  justify-content: center;
+}
+
+.modal__overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    /* absolute : 요소의 배치 시 부모 요소가 기준이 됨 */
+    position: absolute;
+}
+
+.modal__content {
+    /* absolute : 요소의 배치 시 요소 자기자신을 기준으로 움직임 */
+    /* 필요 시 z-index 조정합시다! */
+    position: fixed;
+    width: 50%;
+    height: 70%;
+    background-color: #8BD8BD;
+
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    padding: 30px;
+
+    border-radius : 30px;
+
+  margin-top : 80px;
+>>>>>>> 5cb92abb044a48fa63d5b0d7dd451edb74128a93
 }
 
 /* modal 열고 닫을 때 추가-제거할 클래스 */
 .hidden {
+<<<<<<< HEAD
   display: none;
 }
 
@@ -62,15 +110,66 @@
 
       function savePost() {
         let url = $('#post-url').val();
+=======
+    display: none;
+}
+
+.save-page__post {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.save-page__post p {
+    display: flex;
+    justify-content: center;
+  font-size : 30px;
+  }
+    /* 모달 창 CSS 마무리 */
+  </style>
+  <script>
+
+    /* 모달 창 JS 코드 시작 */
+
+    /* 파일 업로드 코드 */
+    $(document).ready(function () {
+      bsCustomFileInput.init()
+    })
+
+    /* 포스트 저장 데이터 보내기 */
+      function savePost() {
+        let file = $('#post-file')[0].files[0]
+        let form_data = new FormData();
+
+>>>>>>> 5cb92abb044a48fa63d5b0d7dd451edb74128a93
         let title = $('#post-title').val();
         let category = $('#post-category').val();
         let price = $('#post-price').val();
         let starPoints = $('#post-starpoints').val();
         let comment = $('#post-comment').val();
+<<<<<<< HEAD
         $.ajax({
           type: "POST",
           url: "/savepost",
           data: {url_give: url, title_give: title, category_give:category, price_give:price, starPoints_give:starPoints, comment_give:comment},
+=======
+
+        form_data.append("file_give", file)
+        form_data.append("title_give", title)
+        form_data.append("category_give", category)
+        form_data.append("price_give",price)
+        form_data.append("starPoints_give",starPoints)
+        form_data.append("comment_give", comment)
+
+        $.ajax({
+          type: "POST",
+          url: "/savepost",
+          data: form_data,
+          cache: false,
+          contentType: false,
+          processData: false,
+>>>>>>> 5cb92abb044a48fa63d5b0d7dd451edb74128a93
           success: function (response) {
             alert(response["msg"])
                     $('.modal').addClass("hidden");
@@ -78,24 +177,46 @@
         });
       }
 
+<<<<<<< HEAD
+=======
+    /* 모달 창 JS 코드 마무리 */
+
+>>>>>>> 5cb92abb044a48fa63d5b0d7dd451edb74128a93
 </script>
 
 </head>
 <body>
+<<<<<<< HEAD
+=======
+
+  <!-- 모달 창 열기 버튼 (포스트 작성하기) -->
+>>>>>>> 5cb92abb044a48fa63d5b0d7dd451edb74128a93
   <div class = "main-body">
     <button type = "button" class = "main-body__post">
       작성하기
     </button>
   </div>
 
+<<<<<<< HEAD
+=======
+ <!-- 모달 창 : 포스트 작성 양식 코드 시작 -->
+>>>>>>> 5cb92abb044a48fa63d5b0d7dd451edb74128a93
   <div class = "modal save-page hidden" id = "modal-post">
     <div class="modal__overlay"></div>
     <div class = "modal__content">
       <div class = "save-page__post">
       <p>차박 꿀템 공유하기</p>
+<<<<<<< HEAD
       <label for = "post-url">URL<input id = "post-url" type = "url" required placeholder = "해당 아이템의 구매 url을 입력하세요."></label>
       <label for = "post-title">제목<input id = "post-title" type = "text" required placeholder = "제목을 입력하세요."></label>
       <label for = "post-category">카테고리<select id = "post-category">
+=======
+        <div class="filebox">
+          <label class="custom-file-label" for="post-file" style="color: blueviolet">사진</label></div>
+          	<input type="file" accept=".jpg, .jpeg, .png" class="post-files" id="post-file">
+      <div><label for = "post-title">제목</label><input id = "post-title" type = "text" required placeholder = "제목을 입력하세요."></div>
+      <div><label for = "post-category">카테고리</label><select id = "post-category">
+>>>>>>> 5cb92abb044a48fa63d5b0d7dd451edb74128a93
         <option selected>선택하세요!</option>
         <option value = "조명">조명</option>
         <option value = "캠핑매트">캠핑매트</option>
@@ -104,18 +225,32 @@
         <option value = "간이의자">간이 의자</option>
         <option value = "간의테이블">간이 테이블</option>
         <option value = "기타">기타</option>
+<<<<<<< HEAD
       </select></label>
       <label for = "post-price">가격<input id = "post-price" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required placeholder = "가격대를 입력하세요."></label>
       <label for = "post-starpoints">별점<select id = "post-starpoints">
+=======
+      </select></div>
+      <div><label for = "post-price">가격</label><input id = "post-price" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required placeholder = "가격대를 입력하세요."></div>
+      <div><label for = "post-starpoints">별점</label><select id = "post-starpoints">
+>>>>>>> 5cb92abb044a48fa63d5b0d7dd451edb74128a93
         <option selected>선택하세요!</option>
         <option value = "5">5</option>
         <option value = "4">4</option>
         <option value="3">3</option>
         <option value="2">2</option>
         <option value="1">1</option>
+<<<<<<< HEAD
       </select></label>
       <label for="post-comment">한줄평<input id="post-comment" type="text" required placeholder="상품에 관해 한줄평을 남겨주세요."></label>
         </div>
+=======
+      </select></div>
+      <div><label for="post-comment">한줄평</label><input id="post-comment" type="text" required placeholder="상품에 관해 한줄평을 남겨주세요."></div>
+        </div>
+
+   <!-- 버튼 뭉치 : 저장하기 + 취소하기 -->
+>>>>>>> 5cb92abb044a48fa63d5b0d7dd451edb74128a93
       <div class="save-page__btn">
         <!-- 저장하기 버튼 -->
         <button type="button" class="save-page__btn--save" onclick="savePost()">
@@ -127,12 +262,21 @@
         </button>
       </div>
     </div>
+<<<<<<< HEAD
 
+=======
+ <!-- 모달 창 : 포스트 작성 양식 코드 마무리 -->
+>>>>>>> 5cb92abb044a48fa63d5b0d7dd451edb74128a93
 
 
   </div>
 
 </body>
+<<<<<<< HEAD
+=======
+
+ <!-- JS 코드 시작 // 모달 창 : 열고 닫기 -->
+>>>>>>> 5cb92abb044a48fa63d5b0d7dd451edb74128a93
 <script>
   const openButton = document.getElementsByClassName("main-body__post");
   const modal = document.querySelector(".modal");
@@ -152,4 +296,8 @@
   openButton[0].addEventListener("click", openModal);
 
 </script>
+<<<<<<< HEAD
+=======
+ <!-- JS 코드 마무리 // 모달 창 : 열고 닫기 -->
+>>>>>>> 5cb92abb044a48fa63d5b0d7dd451edb74128a93
 </html>

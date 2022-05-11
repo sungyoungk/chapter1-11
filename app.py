@@ -15,7 +15,15 @@ def home():
 
 @app.route("/savepost", methods=["POST"])
 def save_post():
+<<<<<<< HEAD
     url_receive = request.form["url_give"]
+=======
+    img = request.files["file_give"]
+    extension = img.filename.split('.')[-1]
+    filename = f'img'
+    save_to = f'static/{filename}.{extension}'
+    img.save(save_to)
+>>>>>>> 5cb92abb044a48fa63d5b0d7dd451edb74128a93
     title_receive = request.form["title_give"]
     category_receive = request.form["category_give"]
     price_receive = request.form["price_give"]
@@ -27,7 +35,11 @@ def save_post():
 
     doc = {
         'num': count,
+<<<<<<< HEAD
         'url' : url_receive,
+=======
+        'img': f'{filename}.{extension}',
+>>>>>>> 5cb92abb044a48fa63d5b0d7dd451edb74128a93
         'title' :title_receive,
         'category' : category_receive,
         'price' : price_receive,
