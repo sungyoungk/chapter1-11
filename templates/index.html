@@ -177,7 +177,7 @@
 
     .card {
         width: 250px;
-        height: 400px;
+        height: 300px;
         margin-left : 50px;
         margin-bottom: 50px;
     }
@@ -189,9 +189,14 @@
 
     .card img{
         width : 250px;
-        height : 200px;
+        height : 250px;
+        margin-bottom: 15px;
     }
 
+    .card-body {
+        padding : 10px;
+        height : 140px;
+    }
     .card-body h5 {
         font-size : 25px;
         font-weight: 800;
@@ -299,6 +304,17 @@
     }
 
     /* 모달 창 CSS 마무리 */
+
+    /* anchor style */
+    a {
+        color : var(--blue);
+        text-decoration : none;
+    }
+
+    a:hover {
+        color : var(--blue);
+        text-decoration : none;
+    }
 </style>
 <script>
 
@@ -314,6 +330,7 @@
             success: function (response) {
                 let capingtems = response['all_capingtem']
                 for (let i = 0; i < capingtems.length; i++) {
+                    let index = capingtems[i]['num']
                     let title = capingtems[i]['title']
                     let category = capingtems[i]['category']
                     let price = capingtems[i]['price']
@@ -325,13 +342,14 @@
                                         <img width="250" height="200" alt="${title}"
                                              src="../static/${img}">
                                         <div class="card-body">
+                                            <a href="/main/${index}">
                                             <h5 class="card-title">${title}</h5>
                                             <p class="card-category">${category}</p>
                                             <p class="card-price">${price}</p>
                                             <p class="card-star">${starpoints}</p>
                                             <p class="mycomment">${comment}</p>
                                         </div>
-                                    </div>`
+                                    </div></a>`
                     $('#cards-box').append(temp_html)
 
                 }
