@@ -26,6 +26,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
+<<<<<<< HEAD
+=======
+    <!-- Google Font : Logo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap" rel="stylesheet">
+
+>>>>>>> d92f03b4f8a20b1ae0216c077601a31577e63594
     <script>
         // {% if msg %}
             //    alert("{{ msg }}")
@@ -214,6 +222,7 @@
     </script>
 
     <style>
+<<<<<<< HEAD
         .title {
 
         }
@@ -222,6 +231,29 @@
             width: 250px;
             height: 250px;
             margin: 20px auto 20px auto;
+=======
+        body {
+            margin : 0;
+            padding : 0;
+            width : 100%;
+            height : 100vh;
+            display : flex;
+        }
+        /* 로그인 탭 CSS 정리 - 일부 html 내 Style 적용 */
+        .title {
+            display : flex;
+            justify-content: center;
+            font-family: 'Oleo Script Swash Caps', cursive;
+            font-size: 60px;
+            margin : 0;
+            color : white;
+        }
+
+        .pic {
+            width: 200px;
+            height: 200px;
+            margin: 60px auto 20px auto;
+>>>>>>> d92f03b4f8a20b1ae0216c077601a31577e63594
 
             color: white;
 
@@ -236,6 +268,7 @@
             padding-top: 40px;
         }
 
+<<<<<<< HEAD
         .wrap {
             width: 95%;
             max-width: 500px;
@@ -250,20 +283,42 @@
 
         .button.is-sparta {
             background-color: #8BD8BD;
+=======
+
+        .wrap {
+            max-width: 450px;
+
+            box-shadow: 0px 0px 3px 0px black;
+            padding: 20px;
+
+            background-color: #141e38;
+        }
+
+        .button.is-sparta {
+            background-color: #243665;
+>>>>>>> d92f03b4f8a20b1ae0216c077601a31577e63594
             border-color: transparent;
             color: #fff !important;
         }
 
         .button.is-sparta.is-outlined {
+<<<<<<< HEAD
             background-color: transparent;
             border-color: #8BD8BD;
             color: #8BD8BD !important;
+=======
+            background-color: #243665;
+            border-color: #243665;
+            color: white !important;
+
+>>>>>>> d92f03b4f8a20b1ae0216c077601a31577e63594
         }
 
         .help {
             color: gray;
         }
 
+<<<<<<< HEAD
     </style>
 
 </head>
@@ -336,14 +391,161 @@
                             </div>
                             <div>
                                 <div class="field has-addons">
+=======
+        .box {
+            border-radius: 30px;
+            padding : 30px;
+        }
+
+        .container {
+            display : flex;
+            justify-content: center;
+            margin : 0 ;
+
+            position : relative;
+            top : -30px;
+        }
+
+        .help {
+            color : #141e38;
+        }
+
+        /* 좌측 배경화면 CSS 시작 */
+        .side-background {
+            background-image: url("/static/4.jpg");
+            background-size: cover;
+            width : 80%;
+            position : relative;
+
+            display : flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-end;
+
+            padding-left : 30px;
+            padding-bottom: 30px;
+        }
+
+        .side-background span {
+            color : white;
+            opacity: 0.9;
+            font-size: 50px;
+            font-family: 'Oleo Script Swash Caps', cursive;
+        }
+
+        .side-background span:nth-child(2),
+        .side-background span:nth-child(3) {
+            font-size: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+    </style>
+
+
+</head>
+<body>
+    <!-- 로그인 페이지 : 좌측 화면 -->
+    <div class="side-background">
+        <span>Carping With Me!</span>
+        <span>Everything you need is here!</span>
+        <span>Pick me, Ping ME!</span>
+    </div>
+
+    <!-- 로그인 페이지 : 로그인 탭 -->
+    <div class="wrap">
+
+        <!-- 로고 & 타이틀 -->
+        <div class="pic"></div>
+        <div class="title">
+            <h1>PingMe!</h1>
+        </div>
+
+        <!-- 로그인 탭 form-container -->
+        <section class="section">
+            <div class="container">
+                <div class="box" style="width: 400px; max-width:400px;background-color:#8BD8BD">
+                    <article class="media">
+                        <div class="media-content">
+                            <!-- ID / PW 작성 form-container(회원가입 중복) -->
+                            <div class="content">
+                                <!-- ID 작성 form -->
+                                <div class="field has-addons">
+                                    <!-- ID 작성 Input -->
+                                    <!-- 회원가입 Input 중복 양식 -->
+                                    <div class="control has-icons-left" style="width:100%">
+                                        <input id="input-username" class="input" type="text" placeholder="아이디">
+                                        <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
+                                    </div>
+                                    <!-- ID 중복확인 Btn(회원가입 Part) -->
+                                    <div id="btn-check-dup" class="control is-hidden">
+                                        <button class="button is-sparta" onclick="check_dup()">중복확인</button>
+                                    </div>
+                                </div>
+                                <!-- ID작성 안내 문구 -->
+                                <p id="help-id" class="help is-hidden" style="font-size:x-small;">아이디는 2-10자의 영문과 숫자와 일부 특수문자(._-)만 입력 가능합니다.</p>
+                                <p id="help-id-login" class="help is-danger"></p>
+
+                                <!-- PW 작성 form -->
+                                <div class="field">
+                                    <!-- PW 작성 Input -->
+                                    <div class="control has-icons-left">
+                                        <input id="input-password" class="input" type="password" placeholder="비밀번호">
+                                        <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
+                                    </div>
+                                    <!-- PW 작성 안내문구 -->
+                                    <p id="help-password" class="help is-hidden"style="font-size:x-small;">영문과 숫자 조합의 8-20자의 비밀번호를 설정해주세요. 특수문자(!@#$%^&*)도 사용 가능합니다.</p>
+                                    <p id="help-password-login" class="help is-danger"></p>
+                                </div>
+                            </div>
+
+                            <!-- 로그인버튼 / 회원가입 묶음 -->
+                            <div id="div-sign-in-or-up" class="has-text-centered">
+                                <!-- 로그인버튼 / divide line -->
+                                <nav class="level is-mobile">
+                                <button class="level-item button is-sparta" onclick="sign_in()">로그인</button>
+                                </nav>
+                                <hr>
+                                <!-- 회원가입 안내 / 버튼 -->
+                                <h4 class="mb-3" style="color:#141e38">아직 회원이 아니라면</h4>
+                                <nav class="level is-mobile">
+                                <button class="level-item button is-sparta is-outlined" onclick="toggle_sign_up()">회원가입하기</button>
+                                </nav>
+                            </div>
+
+                            <!-- 회원가틉 버튼 click -->
+                            <!-- 회원가입 form-box (ID 작성 중복으로 생략) -->
+                            <div id="sign-up-box" class="is-hidden">
+                                <!-- PW 입력 Form DIV -->
+                                <div class="mb-5">
+                                    <!-- PW 확인 Form 정렬 가능 div -->
+                                    <div class="field">
+                                        <!-- PW 확인 Input -->
+                                        <div class="control has-icons-left" style="width:100%">
+                                            <input id="input-password2" class="input" type="password" placeholder="비밀번호 재입력">
+                                            <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
+                                        </div>
+                                        <!-- PW 확인 Placeholder -->
+                                        <p id="help-password2" class="help is-hidden" style="font-size:x-small;">비밀번호를 다시 한 번 입력해주세요.</p>
+                                    </div>
+                                </div>
+                            <!-- 닉네임 입력 Form DIV -->
+                            <div>
+                                <!-- 닉네임 입력 Form -->
+                                <div class="field has-addons">
+                                    <!-- 닉네임 입력 Input -->
+>>>>>>> d92f03b4f8a20b1ae0216c077601a31577e63594
                                     <div class="control has-icons-left" style="width:100%">
                                         <input id="input-nickname" class="input" type="text" placeholder="닉네임">
                                         <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
                                     </div>
+<<<<<<< HEAD
+=======
+                                    <!-- 닉네임 중복확인 Btn -->
+>>>>>>> d92f03b4f8a20b1ae0216c077601a31577e63594
                                     <div id="btn-check-nick" class="control is-hidden">
                                         <button class="button is-sparta" onclick="check_nick()">중복확인</button>
                                     </div>
                                 </div>
+<<<<<<< HEAD
                                 <p id="help-nick" class="help is-hidden" style="color:navajowhite;font-size:x-small;">본인만의 재미있는 닉네임을 설정해주세요!</p>
                             </div>
 
@@ -354,6 +556,16 @@
                                 <button class="level-item button is-sparta is-outlined" onclick="toggle_sign_up()">
                                     취소
                                 </button>
+=======
+                                <!-- 닉네입 입력 안내 -->
+                                <p id="help-nick" class="help is-hidden" style="font-size:x-small;">본인만의 재미있는 닉네임을 설정해주세요!</p>
+                            </div>
+
+                            <!-- 회원 가입 / 취소 Btn -->
+                            <nav class="level is-mobile" style="margin-top:20px;">
+                                <button class="level-item button is-sparta" onclick="sign_up()">회원가입</button>
+                                <button class="level-item button is-sparta is-outlined" onclick="toggle_sign_up()">취소</button>
+>>>>>>> d92f03b4f8a20b1ae0216c077601a31577e63594
                             </nav>
                         </div>
                     </div>
