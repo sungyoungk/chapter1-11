@@ -159,7 +159,7 @@ def posting():
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect(url_for("home"))
 
-@app.route('/comment/<index>', methods=['GET'])
+@app.route('/comment', methods=['GET'])
 def get_posts():
         token_receive = request.cookies.get('mytoken')
         try:
