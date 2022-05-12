@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Bulma CSS 링크 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
+    <!-- Google Font : Logo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap" rel="stylesheet">
+
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/79ab9960f1.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+</body>
+
+<title>Title</title>
+<style>
+    /* fixed color */
+    :root {
+        --blue: #243665;
+        --green: #8BD8BD;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    /* header CSS*/
+    .main__header {
+        width: 100%;
+        height: 150px;
+
+        background: #243665;
+
+        display: flex;
+        justify-content: space-between;
+        align-content: flex-start;
+
+        margin-bottom: 100px;
+    }
+
+    .header__logo {
+        height: 100px;
+        width: 100px;
+        margin-top: 25px;
+        margin-left: 25px
+    }
+
+    .header__title {
+        padding: 30px;
+    }
+
+    .header__title span {
+        font-size: 60px;
+        color: white;
+        font-family: 'Oleo Script Swash Caps', cursive;
+    }
+
+    .main-info {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        box-sizing: border-box;
+
+        margin-bottom : 100px;
+    }
+
+    .main-info__img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .main-info__img img{
+        border-radius: 50px;
+    }
+
+    .main-info__infos {
+        display: flex;
+        width: 500px;
+        flex-direction: column;
+        padding: 30px;
+        box-sizing: border-box;
+    }
+
+    .main-info__infos h1 {
+        display : flex;
+        flex-direction: column;
+        font-size: 30px;
+        font-weight: 700;
+        margin-top : 20px;
+        margin-bottom : 20px;
+    }
+
+    .main-info__infos--detail {
+        font-size: 18px;
+        display : flex;
+        flex-direction: column;
+        font-weight: 500;
+        color : dimgrey;
+    }
+
+    .main-info__infos--detail i {
+        margin-right: 20px;
+    }
+
+    .main-info__infos--detail span {
+        margin-bottom : 10px;
+    }
+
+    .main-info__infos--detail span:first-child i {
+        color: #0078dc;
+    }
+
+    .main-info__infos--detail span:nth-child(2) i {
+        color: #ffb30a;
+    }
+
+    .main-info__infos--detail span:nth-child(3) i {
+        color: #ff6ea1;
+    }
+
+    .main-info__infos--detail span:last-child i {
+        color: #ffcf11;
+    }
+
+
+    .wrap_comment {
+        width: 95%;
+        max-width: 800px;
+        margin: 0px auto 0px auto;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .wrap_comment > input {
+        width: 100%;
+        border-radius: 50px;
+        border: solid 1px;
+        border-color: darkgray;
+
+        margin-right: 10px;
+        padding: 8px;
+    }
+
+    .wrap_comment > button {
+        border-radius: 70%;
+        padding: 8px 13px;
+        border: none;
+
+        color: white;
+        background: #243665;
+    }
+
+    .comment_list {
+        width: 95%;
+        max-width: 800px;
+        margin: 30px auto 10px auto;
+    }
+
+    .comment_list > input {
+
+        width: 95%;
+        max-width: 800px;
+
+        margin: auto;
+
+        border: none;
+        border-bottom: 1px solid #CCC;
+        color: #555;
+
+        pointer-events: none;
+    }
+
+    .comment_push {
+        text-align: center;
+    }
+
+    .comment_push:focus {
+        outline: none;
+        background-color: #fffbe0;
+    }
+
+    .wrap_comment > button:hover {
+        background: #ffc533;
+        cursor: pointer;
+        color: black;
+    }
+
+    .comment--css {
+        display: flex;
+        align-content: center;
+        height: 50px;
+        font-size: 20px;
+        color: var(--blue);
+    }
+
+    .comment--css i{
+        margin-left : 10px;
+        margin-right : 20px;
+        transform: scaleX(-1);
+    }
+
+    .blank {
+        height: 50px;
+        background-color: white;
+    }
+
+
+</style>
+
+<script>
+    $(document).ready(function () {
+        get_posts()
+    })
+
+    function post() {
+        let comment = $("#input-post").val()
+        let today = new Date().toISOString()
+        $.ajax({
+            type: "POST",
+            url: "/comment",
+            data: {
+                comment_give: comment,
+                date_give: today
+            },
+            success: function (response) {
+                alert(response['msg'])
+                window.location.reload()
+            }
+        })
+    }
+
+    function time2str(date) {
+        let today = new Date()
+        let time = (today - date) / 1000 / 60  // 분
+
+        if (time < 60) {
+            return parseInt(time) + "분 전"
+        }
+        time = time / 60  // 시간
+        if (time < 24) {
+            return parseInt(time) + "시간 전"
+        }
+        time = time / 24
+        if (time < 7) {
+            return parseInt(time) + "일 전"
+        }
+        return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
+    }
+
+            function get_posts() {
+                $("#comment_list").empty()
+                $.ajax({
+                    type: "GET",
+                    url: "/comment",
+                    data: {},
+                    success: function (response) {
+                        if (response["result"] == "success") {
+                            let posts = response["posts"]
+                            for (let i = 0; i < posts.length; i++) {
+                                let post = posts[i]
+                                let time_post = new Date(post["date"])
+                                let time_before = time2str(time_post)
+                                let html_temp = `<div class="comment comment--css" id="${post["_id"]}">
+                                            <p><i class="fa-solid fa-comment-dots"></i>${post['comment']} | ${time_before}"</p><br>
+                                        </div>`
+                                $("#comment_list").append(html_temp)
+                            }
+                        }
+                    }
+                })
+            }
+
+</script>
+
+</head>
+<body>
+<!-- header -->
+<header class="main__header">
+    <!-- btn element -->
+    <div class="header__logo">
+        <img src="/static/car.png"/>
+    </div>
+    <div class="header__title">
+        <span>PingMe!</span>
+    </div>
+</header>
+
+<!-- main : 제품 사진 및 정보  -->
+<!-- 제품 사진  -->
+<div class="wrap main-info">
+    <div class="item_pic main-info__img">
+        {% for num in data %}
+        <img src="/static/{{num.img}}"/>
+    </div>
+    <!-- 제품 정보  -->
+    <div class="item_infolist main-info__infos">
+        <h1>{{num.title}}</h1>
+        <div class="main-info__infos--detail">
+            <span><i class="fa-solid fa-tag"></i> 용도: {{num.category}}</span>
+            <span><i class="fa-solid fa-sack-dollar"></i> 가격: {{num.price}}원</span>
+            <span><i class="fa-solid fa-star"></i> 별점: {{num.starpoints}}점</span>
+            <span><i class="fa-solid fa-face-grin"></i> 한줄평: {{num.comment}}</span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<!-- main : comment  -->
+
+<div class="wrap_comment" id="textarea-post">
+    <input class="comment comment_push" id="input-post" type="text" placeholder="  댓글을 작성하세요">
+    <button onclick="post()">⬆</button>
+</div>
+
+
+<!-- main : comment_post -->
+<div class="comment_list" id="comment_list">
+    <div class="comment">
+        <p> 닉네임 : 강추합니다!!"</p><br>
+    </div>
+    <div class="comment">
+        <p> 닉네임 : 강추합니다!!"</p><br>
+    </div>
+</div>
+
+
+<!-- footer -->
+    <footer class="blank">
+
+    </footer>
+
+</div>
+</body>
+</html>
