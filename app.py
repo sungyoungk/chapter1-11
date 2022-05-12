@@ -150,7 +150,7 @@ def posting():
         date_receive = request.form["date_give"]
         print(type(date_receive))
         doc = {
-            "username": user_info["username"],
+
             "comment": comment_receive,
             "date": date_receive
         }
