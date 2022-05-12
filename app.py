@@ -139,6 +139,38 @@ def detail(index):
     details = list(db.savepost.find({'num' : int(index)}, {"_id": False}))
     return render_template("view.html", data=details)
 
+@app.route('/comment', methods=['POST'])
+def posting():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        # 포스팅하기
+        user_info = db.users.find_one({"username": payload["id"]})
+        comment_receive = request.form["comment_give"]
+        date_receive = request.form["date_give"]
+        print(type(date_receive))
+        doc = {
+            "username": user_info["username"],
+            "comment": comment_receive,
+            "date": date_receive
+        }
+        db.posts.insert_one(doc)
+        return jsonify({"result": "success", 'msg': '포스팅 성공'})
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect(url_for("home"))
+
+@app.route('/comment', methods=['GET'])
+def get_posts():
+        token_receive = request.cookies.get('mytoken')
+        try:
+            payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+            posts = list(db.posts.find({}).sort("date", -1).limit(10))
+            for post in posts:
+                post["_id"] = str(post["_id"])
+            return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", "posts": posts})
+        except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+            return redirect(url_for("home"))
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
