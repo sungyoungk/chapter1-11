@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -180,7 +181,7 @@
 
     .card {
         width: 250px;
-        height: 400px;
+        height: 300px;
         margin-left: 50px;
         margin-bottom: 50px;
     }
@@ -192,7 +193,13 @@
 
     .card img {
         width: 250px;
-        height: 200px;
+        height: 250px;
+        margin-bottom: 15px;
+    }
+
+    .card-body {
+        padding: 10px;
+        height: 140px;
     }
 
     .card-body h5 {
@@ -303,6 +310,17 @@
     }
 
     /* 모달 창 CSS 마무리 */
+
+    /* anchor style */
+    a {
+        color: var(--blue);
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: var(--blue);
+        text-decoration: none;
+    }
 </style>
 <script>
 
@@ -318,24 +336,26 @@
             success: function (response) {
                 let capingtems = response['all_capingtem']
                 for (let i = 0; i < capingtems.length; i++) {
+                    let index = capingtems[i]['num']
                     let title = capingtems[i]['title']
                     let category = capingtems[i]['category']
                     let price = capingtems[i]['price']
                     let comment = capingtems[i]['comment']
                     let img = capingtems[i]['img']
-                    let starpoints = capingtems[i]['category']
+                    let starpoints = capingtems[i]['starpoints']
 
                     let temp_html = `<div class="card h-100">
                                         <img width="250" height="200" alt="${title}"
                                              src="../static/${img}">
                                         <div class="card-body">
+                                            <a href="/main/${index}">
                                             <h5 class="card-title">${title}</h5>
                                             <p class="card-category">${category}</p>
                                             <p class="card-price">${price}</p>
                                             <p class="card-star">${starpoints}</p>
                                             <p class="mycomment">${comment}</p>
                                         </div>
-                                    </div>`
+                                    </div></a>`
                     $('#cards-box').append(temp_html)
 
                 }
@@ -382,12 +402,16 @@
     }
 
     /* 모달 창 JS 코드 마무리 */
+
+
+    /* 로그아웃 함수 */
     function logout() {
         $.removeCookie('mytoken', {path: '/'});
-        alert('로그아웃!')
+        alert('로그아웃!!')
         window.location.href = "/login"
-                        {#replace("/login")#}
+        {#replace("/login")#}
     }
+
 </script>
 
 <body>
@@ -475,17 +499,21 @@
                 <!-- select // 별점 선택 -->
                 <div class="select is-primary form-ctrl">
                     <select id="post-starpoints" class="form-ctrl">
-                        <option>별점을 선택하세요.</option>
+                        <option>만족도를 선택해주세요.</option>
                         <option>5</option>
+                        <option>4.5</option>
                         <option>4</option>
+                        <option>3.5</option>
                         <option>3</option>
+                        <option>2.5</option>
                         <option>2</option>
+                        <option>1.5</option>
                         <option>1</option>
                     </select>
                 </div>
                 <!-- input // 한줄평 작성 -->
-                <div><input id="post-comment" class="input is-primary form-ctrl" type="text"
-                            placeholder="상품에 관해 한줄평을 남겨주세요."></div>
+                <div><input id="post-comment" class="input is-primary form-ctrl" type="text" maxlength="20"
+                            placeholder="상품에 관해 간단한 한줄평을 남겨주세요."></div>
             </div>
             <!-- 버튼 뭉치 : 저장하기 + 취소하기 -->
             <div class="save-page__btn">
